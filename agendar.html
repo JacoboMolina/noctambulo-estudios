@@ -269,17 +269,28 @@
             const tabs = document.querySelectorAll('.booking-tab');
             const calendars = document.querySelectorAll('.booking-calendar');
 
+            function activateTab(tabName) {
+                tabs.forEach(t => t.classList.remove('active'));
+                calendars.forEach(c => c.classList.remove('active'));
+
+                const targetTab = document.querySelector(`.booking-tab[data-tab="${tabName}"]`);
+                const targetCalendar = document.getElementById('calendar-' + tabName);
+
+                if (targetTab && targetCalendar) {
+                    targetTab.classList.add('active');
+                    targetCalendar.classList.add('active');
+                }
+            }
+
+            // Check URL hash on load
+            const hash = window.location.hash.substring(1);
+            if (hash && ['clases', 'ensayo', 'grabacion'].includes(hash)) {
+                activateTab(hash);
+            }
+
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    const targetTab = this.dataset.tab;
-
-                    // Remove active from all tabs and calendars
-                    tabs.forEach(t => t.classList.remove('active'));
-                    calendars.forEach(c => c.classList.remove('active'));
-
-                    // Add active to clicked tab and corresponding calendar
-                    this.classList.add('active');
-                    document.getElementById('calendar-' + targetTab).classList.add('active');
+                    activateTab(this.dataset.tab);
                 });
             });
         });
