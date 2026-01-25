@@ -2163,7 +2163,15 @@ ul {
     }
 
     .hero-scroll {
-        display: none;
+        right: 10%;
+        bottom: -70px;
+        color: var(--color-text);
+    }
+
+    .scroll-indicator {
+        height: 30px;
+        opacity: 0.5;
+        background: linear-gradient(to bottom, var(--color-text), transparent);
     }
 
     /* Services Mobile */
