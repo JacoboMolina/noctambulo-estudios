@@ -369,6 +369,13 @@ ul {
     letter-spacing: 0.1em;
 }
 
+.hero-location {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: 1rem;
+    opacity: 0.85;
+}
+
 .hero-buttons {
     display: flex;
     gap: var(--spacing-sm);
