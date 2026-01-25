@@ -227,34 +227,6 @@ ul {
     font-size: 0.875rem;
 }
 
-/* Nav Social Icons - Always visible, centered */
-.nav-social {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.nav-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    color: var(--color-text-light);
-    transition: var(--transition-fast);
-}
-
-.nav-social a:hover {
-    color: var(--color-accent);
-}
-
-.nav-social svg {
-    width: 24px;
-    height: 24px;
-}
-
 /* Mobile Navigation Toggle */
 .nav-toggle {
     display: none;
@@ -349,7 +321,38 @@ ul {
 .hero-logo {
     width: 550px;
     height: auto;
-    margin: 0 auto var(--spacing-xl);
+    margin: 0 auto var(--spacing-lg);
+}
+
+/* Hero Social Icons */
+.hero-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    transition: var(--transition-normal);
+}
+
+.hero-social a:hover {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.hero-social svg {
+    width: 22px;
+    height: 22px;
 }
 
 .hero-title {
@@ -2141,23 +2144,6 @@ ul {
 
     .nav-cta {
         margin-top: var(--spacing-md);
-    }
-
-    /* Social icons stay visible in mobile navbar, centered */
-    .nav-social {
-        gap: 0.5rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .nav-social a {
-        width: 28px;
-        height: 28px;
-    }
-
-    .nav-social svg {
-        width: 22px;
-        height: 22px;
     }
 
     /* Hero Mobile */
