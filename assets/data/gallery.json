@@ -1,0 +1,106 @@
+{
+  "categories": [
+    { "id": "equipo", "name": "Equipo" },
+    { "id": "instrumentos", "name": "Instrumentos" },
+    { "id": "espacio", "name": "Nuestro Espacio" },
+    { "id": "ustedes", "name": "Ustedes" }
+  ],
+  "images": [
+    {
+      "file": "equipo/rack.png",
+      "category": "equipo",
+      "title": "Rack de Audio",
+      "description": "Consola Allen & Heath CQ20B y sistema inalámbrico"
+    },
+    {
+      "file": "equipo/rack_2.jpg",
+      "category": "equipo",
+      "title": "Line 6 Helix",
+      "description": "Procesador de guitarra profesional"
+    },
+    {
+      "file": "equipo/escritorio.jpg",
+      "category": "equipo",
+      "title": "Producción",
+      "description": "Todo lo relacionado a la producción musical, aqui"
+    },
+    {
+      "file": "equipo/bocina.jpg",
+      "category": "equipo",
+      "title": "Monitores",
+      "description": "Electrovoice y Yamaha"
+    },
+    {
+      "file": "instrumentos/guitarras.jpg",
+      "category": "instrumentos",
+      "title": "Guitarras",
+      "description": "Fender, Gibson, PRS, Epiphone"
+    },
+    {
+      "file": "instrumentos/guitarras_2.jpg",
+      "category": "instrumentos",
+      "title": "Colección",
+      "description": "Variedad para cada estilo"
+    },
+    {
+      "file": "instrumentos/bateria.jpg",
+      "category": "instrumentos",
+      "title": "Batería",
+      "description": "Kit completo profesional"
+    },
+    {
+      "file": "instrumentos/gobo.jpg",
+      "category": "instrumentos",
+      "title": "Sala Acústica",
+      "description": "Con tratamiento acústico profesional"
+    },
+    {
+      "file": "instrumentos/bajo.jpg",
+      "category": "instrumentos",
+      "title": "Bajo",
+      "description": "Para las líneas graves"
+    },
+    {
+      "file": "instrumentos/amp_1.jpg",
+      "category": "instrumentos",
+      "title": "Amplificadores",
+      "description": "Cabezales de alta gama"
+    },
+    {
+      "file": "instrumentos/amp_2.jpg",
+      "category": "instrumentos",
+      "title": "Amps Vintage",
+      "description": "Sonido clásico garantizado"
+    },
+    {
+      "file": "instrumentos/mic.jpg",
+      "category": "instrumentos",
+      "title": "Variedad de Micrófonos",
+      "description": "Microfonía Shure para todos tus ensayos"
+    },
+    {
+      "file": "espacio/gobo_1.jpg",
+      "category": "espacio",
+      "title": "Sala de Ensayo",
+      "description": "Espacio profesional pensado para tu comodidad"
+    },
+    {
+      "file": "espacio/no_sleep_club.jpg",
+      "category": "espacio",
+      "title": "No Sleep Club",
+      "description": "El espíritu noctámbulo"
+    },
+    {
+      "file": "espacio/pared.jpg",
+      "category": "espacio",
+      "title": "Ambiente",
+      "description": "Cada rincón tiene personalidad"
+    },
+    {
+      "file": "ustedes/banda_1.jpg",
+      "category": "ustedes",
+      "title": "Nuestra Comunidad",
+      "description": "Las bandas que nos visitan"
+    }
+  ]
+}
