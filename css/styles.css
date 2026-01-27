@@ -187,10 +187,21 @@ ul {
     position: relative;
 }
 
-.nav-logo img {
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-logo-icon {
     height: 50px;
     width: auto;
     margin-left: 0.5rem;
+}
+
+.nav-logo-text {
+    height: 28px;
+    width: auto;
 }
 
 .nav-menu {
@@ -2122,6 +2133,17 @@ ul {
         display: flex;
     }
 
+    .nav-logo-text {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 22px;
+    }
+
+    .nav-logo-icon {
+        height: 36px;
+    }
+
     .nav-menu {
         position: fixed;
         top: 0;
@@ -2151,9 +2173,6 @@ ul {
         width: 320px;
     }
 
-    .nav-logo img {
-        height: 36px;
-    }
 
     .hero-buttons {
         flex-direction: column;
