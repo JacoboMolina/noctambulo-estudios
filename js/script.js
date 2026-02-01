@@ -142,23 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     animateElements.forEach(el => observer.observe(el));
 
-    /* ===================================
-       LAZY LOADING IMAGES
-       =================================== */
-    const images = document.querySelectorAll('img[data-src]');
-
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
 
     /* ===================================
        PARALLAX EFFECT FOR HERO
@@ -263,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
         item.className = 'gallery-item' + (isFeatured ? ' gallery-featured' : '');
         item.dataset.category = image.category;
         item.innerHTML = `
-            <img src="assets/img/gallery/${image.file}" alt="${image.title}">
+            <img src="assets/img/gallery/${image.file}" alt="${image.title}" loading="lazy">
             <div class="gallery-overlay">
                 <h4>${image.title}</h4>
                 <p>${image.description}</p>
@@ -311,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>${data.ustedes.subtitle}</p>
                 </div>
                 <div class="ustedes-featured" id="ustedes-featured">
-                    <img src="assets/img/gallery/${data.ustedes.featured}" alt="${data.ustedes.title}">
+                    <img src="assets/img/gallery/${data.ustedes.featured}" alt="${data.ustedes.title}" loading="lazy">
                     <div class="ustedes-featured-overlay">
                         <h4 class="ustedes-count">Nuestra Comunidad</h4>
                         <p class="ustedes-cta">Ver las ${data.ustedes.images.length} fotos →</p>
@@ -321,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="ustedes-grid" id="ustedes-grid">
                         ${data.ustedes.images.map(img => `
                             <div class="ustedes-item">
-                                <img src="assets/img/gallery/${img.file}" alt="${img.title}">
+                                <img src="assets/img/gallery/${img.file}" alt="${img.title}" loading="lazy">
                             </div>
                         `).join('')}
                     </div>
