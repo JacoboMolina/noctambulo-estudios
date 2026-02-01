@@ -38,6 +38,54 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/img/logos/gato_negro.png">
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicSchool",
+        "name": "Noctámbulo Estudios",
+        "alternateName": "Noctambulo Estudios",
+        "description": "Escuela de música, sala de ensayo y estudio de grabación en Tlaxcala. Clases de batería, guitarra, piano y producción musical.",
+        "url": "https://noctambuloestudios.com",
+        "telephone": "+525657933677",
+        "email": "noctambulo.estudios@gmail.com",
+        "image": "https://noctambuloestudios.com/assets/img/gallery/principal_noctambulo.jpg",
+        "logo": "https://noctambuloestudios.com/assets/img/logos/logo_negro.png",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Tlaxcala",
+            "addressRegion": "Tlaxcala",
+            "addressCountry": "MX"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 19.307909671882452,
+            "longitude": -98.21124580930174
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "09:00",
+            "closes": "23:59"
+        },
+        "sameAs": [
+            "https://www.instagram.com/noctambulo_estudios/",
+            "https://www.facebook.com/noctambulo.estudios/",
+            "https://www.youtube.com/@Noctambulo_estudios"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios",
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Clases de música"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sala de ensayo"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Estudio de grabación"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Live Sessions"}}
+            ]
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -116,8 +164,7 @@
     <section class="services" id="servicios">
         <div class="container">
             <h2 class="section-title">Nuestros Servicios</h2>
-            <p class="section-subtitle">Todo lo que necesitas está aquí</p>
-
+            <p class="section-subtitle" style="margin-top: -0.5rem; margin-bottom: var(--spacing-sm);">Todo lo que necesitas está aquí</p>
             <div class="services-grid">
                 <!-- Clases de Música -->
                 <div class="service-card">
@@ -288,9 +335,6 @@
                     <img src="assets/img/gallery/logos/electrovoice.png" alt="Electro-Voice" loading="lazy">
                 </div>
                 <div class="brand-item">
-                    <img src="assets/img/gallery/logos/jbl.png" alt="JBL" loading="lazy">
-                </div>
-                <div class="brand-item">
                     <img src="assets/img/gallery/logos/boss.jpg" alt="Boss" loading="lazy">
                 </div>
             </div>
@@ -342,10 +386,9 @@
             <p class="section-subtitle">Estamos en Tlaxcala, listos para ayudarte y esclarecer tus dudas</p>
 
             <div class="contact-grid">
-                <!-- Contact Info -->
+                <!-- Contact Info + Map -->
                 <div class="contact-info">
-
-                    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                    <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
                         <a href="https://wa.me/5215657933677?text=Hola,%20me%20gustaría%20obtener%20información%20sobre%20Noctámbulo%20Estudios" target="_blank" class="btn btn-primary whatsapp-btn" rel="noopener noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -374,14 +417,14 @@
                                 <line x1="8" y1="3" x2="8" y2="7"></line>
                                 <line x1="3" y1="11" x2="21" y2="11"></line>
                             </svg>
-                            <span>Abrimos de Lunes a Domingo</span>
+                            <span>Lunes a Domingo</span>
                         </div>
                         <div class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            <span>Horario: 9:00 am a 12:00 am</span>
+                            <span>9:00 am a 12:00 am</span>
                         </div>
                         <div class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -390,10 +433,13 @@
                             </svg>
                             <div>
                                 <a href="https://www.google.com/maps/search/Noctámbulo+Estudios+Tlaxcala" target="_blank" rel="noopener noreferrer" class="contact-link">Tlaxcala, Tlax, Mx</a>
-                                <div style="font-size: 0.92em; color: var(--color-text-light);">"Atrás de la UDA"</div>
+                                <div style="font-size: 0.92em; color: var(--color-text-light);">Atrás de Universidad del Altiplano</div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Google Maps -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4325.323174825378!2d-98.21124580930174!3d19.307909671882452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfdfe7beb5cca1%3A0x83733d668cafbd0f!2sNoct%C3%A1mbulo%20Estudios!5e0!3m2!1ses-419!2smx!4v1769931569504!5m2!1ses-419!2smx" width="100%" style="border:0; border-radius: 12px; margin-top: var(--spacing-md);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
                 <!-- Contact Form -->
@@ -403,7 +449,6 @@
                         <!-- Formsubmit config -->
                         <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
                         <input type="hidden" name="_captcha" value="false">
-                        <!-- Cambiar esta URL cuando se suba a GitHub Pages -->
                         <input type="hidden" name="_next" value="https://noctambuloestudios.com/gracias.html">
                         <input type="text" name="_honey" style="display:none">
 
