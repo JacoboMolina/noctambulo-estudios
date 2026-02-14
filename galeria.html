@@ -17,7 +17,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
@@ -30,8 +32,14 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <img src="assets/img/logos/gato_negro.png" alt="Noctámbulo Estudios" class="nav-logo-icon">
-                <img src="assets/img/logos/texto_logo_negro.png" alt="Noctámbulo Estudios" class="nav-logo-text">
+                <picture>
+                    <source srcset="assets/img/logos/gato_negro.webp" type="image/webp">
+                    <img src="assets/img/logos/gato_negro.png" alt="Noctámbulo Estudios" class="nav-logo-icon" width="50" height="50">
+                </picture>
+                <picture>
+                    <source srcset="assets/img/logos/texto_logo_negro.webp" type="image/webp">
+                    <img src="assets/img/logos/texto_logo_negro.png" alt="Noctámbulo Estudios" class="nav-logo-text" width="133" height="39">
+                </picture>
             </a>
 
             <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
@@ -61,6 +69,8 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
+    <main>
     <!-- Gallery Page -->
     <section class="gallery-page">
         <div class="container">
@@ -86,13 +96,17 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <img src="assets/img/logos/texto_logo.png" alt="Noctámbulo Estudios" class="footer-logo" loading="lazy">
+                    <picture>
+                        <source srcset="assets/img/logos/texto_logo.webp" type="image/webp">
+                        <img src="assets/img/logos/texto_logo.png" alt="Noctámbulo Estudios" class="footer-logo" width="200" height="58" loading="lazy">
+                    </picture>
                     <p>Tu música merece un lugar a la altura.</p>
                 </div>
 
@@ -144,6 +158,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </body>
 </html>
