@@ -50,8 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
        NAVBAR SCROLL EFFECT
        =================================== */
     let lastScroll = 0;
+    let ticking = false;
 
-    window.addEventListener('scroll', function() {
+    // Cache layout values to avoid reflows
+    let navbarHeight = navbar.offsetHeight;
+
+    function updateNavbarScroll() {
         const currentScroll = window.pageYOffset;
 
         // Add scrolled class when scrolled down
@@ -62,6 +66,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         lastScroll = currentScroll;
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateNavbarScroll);
+            ticking = true;
+        }
     });
 
     /* ===================================
@@ -93,26 +105,46 @@ document.addEventListener('DOMContentLoaded', function() {
        =================================== */
     const sections = document.querySelectorAll('section[id]');
 
+    // Cache section positions to avoid reflows during scroll
+    let sectionData = [];
+    let navTicking = false;
+
+    function cacheSectionPositions() {
+        navbarHeight = navbar.offsetHeight;
+        sectionData = Array.from(sections).map(section => ({
+            id: section.getAttribute('id'),
+            top: section.offsetTop,
+            height: section.offsetHeight
+        }));
+    }
+
     function setActiveNavLink() {
-        const scrollPosition = window.pageYOffset + navbar.offsetHeight + 100;
+        const scrollPosition = window.pageYOffset + navbarHeight + 100;
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        sectionData.forEach(section => {
+            if (scrollPosition >= section.top && scrollPosition < section.top + section.height) {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
+                    if (link.getAttribute('href') === `#${section.id}`) {
                         link.classList.add('active');
                     }
                 });
             }
         });
+        navTicking = false;
     }
 
-    window.addEventListener('scroll', setActiveNavLink);
+    function onScrollNav() {
+        if (!navTicking) {
+            requestAnimationFrame(setActiveNavLink);
+            navTicking = true;
+        }
+    }
+
+    // Cache positions initially and on resize
+    cacheSectionPositions();
+    window.addEventListener('resize', cacheSectionPositions);
+    window.addEventListener('scroll', onScrollNav);
     setActiveNavLink(); // Set initial state
 
     /* ===================================
@@ -151,11 +183,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (hero && window.innerWidth > 768) {
         const heroContent = hero.querySelector('.hero-content');
         const heroButtons = hero.querySelector('.hero-buttons');
-        const heroLogo = hero.querySelector('.hero-logo');
 
-        window.addEventListener('scroll', function() {
+        // Cache hero height to avoid reflows
+        let heroHeight = hero.offsetHeight;
+        let parallaxTicking = false;
+
+        function updateParallax() {
             const scrolled = window.pageYOffset;
-            const heroHeight = hero.offsetHeight;
 
             if (scrolled < heroHeight) {
                 // Logo y texto se desvanecen normalmente
@@ -169,7 +203,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     heroButtons.style.opacity = 1 - (scrolled / (heroHeight * 0.4));
                 }
             }
+            parallaxTicking = false;
+        }
+
+        function onScrollParallax() {
+            if (!parallaxTicking) {
+                requestAnimationFrame(updateParallax);
+                parallaxTicking = true;
+            }
+        }
+
+        // Recache on resize
+        window.addEventListener('resize', function() {
+            heroHeight = hero.offsetHeight;
         });
+
+        window.addEventListener('scroll', onScrollParallax);
     }
 
     /* ===================================
