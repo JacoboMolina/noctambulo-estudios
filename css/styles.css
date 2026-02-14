@@ -892,9 +892,11 @@ ul {
     z-index: 2;
 }
 
-.preview-overlay h4 {
+.preview-overlay h4,
+.preview-overlay .preview-title {
     font-size: 1rem;
     font-weight: 600;
+    display: block;
 }
 
 .gallery-btn {
