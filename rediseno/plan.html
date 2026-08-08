@@ -452,14 +452,12 @@
 <pre class="tree">/                                  <span class="c">Home — escuela primero</span>
 │
 ├── clases/                        <span class="c">NOCTÁMBULO STUDENTS — donde se aprende</span>
-│   ├── guitarra-electrica/        <span class="c">Hub compite por «escuela de música en Tlaxcala»</span>
+│   ├── plan-de-estudios/          <span class="n">nueva</span> <span class="c">Qué logras en 3, 6 y 12 meses</span>
+│   ├── precios/                   <span class="n">nueva</span> <span class="c">Los tres planes, comparados</span>
+│   ├── guitarra-electrica/
 │   ├── guitarra-acustica/
-│   ├── bajo/
 │   ├── bateria/
-│   ├── piano/
-│   ├── canto/
-│   ├── violin/
-│   └── produccion-musical/
+│   └── canto/                     <span class="c">Los otros 4 instrumentos viven en el hub</span>
 │
 ├── estudio/                       <span class="n">nuevo</span> <span class="c">NOCTÁMBULO ESTUDIOS — donde se hace</span>
 │   ├── sala-de-ensayo/
@@ -474,6 +472,7 @@
 └── 404.html                       <span class="n">nueva</span></pre>
 
     <p>Las dos ramas superiores no son solo orden de archivos: son la estructura del negocio hecha navegación. <code>/clases/</code> es Noctámbulo Students y <code>/estudio/</code> es Noctámbulo Estudios, lo que convierte la sub-marca de adorno visual en arquitectura. Un visitante entiende en un vistazo que hay dos cosas aquí y cuál le toca.</p>
+    <p><b>La marca cambia con la rama.</b> El header imprime «Noctámbulo <b>Estudios</b>» en el home y en todo <code>/estudio/</code>, y «Noctámbulo <b>Students</b>» en todo <code>/clases/</code>. No requiere JavaScript: cada página imprime la palabra de su sección desde la plantilla. Así la sub-marca deja de ser un adorno y se vuelve una señal de ubicación — el header te dice en qué mitad del sitio estás.</p>
     <p>El hub <code>/estudio/</code> además da un destino a la intención combinada — quien busca «estudio de grabación Tlaxcala» sin saber todavía si quiere grabar, ensayar o hacer una Live Session — y es el lugar natural para la venta cruzada hacia clases, y al revés.</p>
     </div>
 
@@ -752,7 +751,8 @@
 
     <ol class="asks">
       <li><b>Testimonios reales</b><span>Confirmar si los tres actuales de <code>clases.html</code> son de alumnos reales. Si no, conseguir tres o cuatro verdaderos con nombre y autorización. Es lo último que bloquea publicar.</span></li>
-      <li><b>Precios reales</b><span>Por instrumento y por paquete: clase suelta, mensual, intensivo. Si varían según el instrumento, mejor — más contenido único por página.</span></li>
+      <li><b>El plan de estudios real</b><span>La ruta de 3, 6 y 12 meses que puse en el prototipo es una propuesta mía, no lo que ustedes enseñan. Necesito la versión verdadera: qué domina un alumno al terminar cada tramo. Es el contenido que justifica el precio y el que hace únicas las páginas de instrumento.</span></li>
+      <li><b>Qué incluye la mensualidad</b><span>La lista completa de todo lo que entra en el plan — material, uso de instrumentos, acceso a la sala, grabación, eventos. Entre más larga y específica, más chico se ve el precio.</span></li>
       <li><b>Los originales de las fotos</b><span>Los archivos sin comprimir de donde salieron las imágenes del repositorio. Las versiones publicadas están a 600×800 y no aguantan la dirección visual elegida. Es la tarea de menor esfuerzo y mayor impacto de la Fase 0.</span></li>
       <li><b>El resto del material visual</b><span>Live Sessions, videos de alumnos, lo que exista fuera del repositorio. Necesito verlo para saber qué se recicla y qué se fotografía de nuevo.</span></li>
       <li><b>Estado de Google Business Profile</b><span>Si ya existe y está verificado, o si hay que crearlo. Es lo más urgente del plan entero.</span></li>

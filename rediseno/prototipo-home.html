@@ -304,8 +304,114 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
 }
 .price.hot { background: var(--night-3); border-color: var(--cork); }
 
-.price-tag { font-family: var(--display); font-size: 2.6rem; line-height: 1; margin-top: .5rem; }
+.price-plan { font-family: var(--display); font-size: 2.1rem; line-height: 1; margin: .5rem 0 0; }
 .price-per { font-size: .85rem; color: var(--on-night-2); }
+
+/* cifra de entrada — una sola, grande, citable */
+.price-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 3rem;
+  padding: 2rem 2.2rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--cork);
+  background: linear-gradient(100deg, rgba(200,154,99,.12), transparent 65%);
+}
+.price-hero p { font-size: .98rem; color: var(--on-night-2); max-width: 42ch; }
+
+.price-hero-fig { display: flex; align-items: baseline; gap: .5rem; flex: none; }
+.price-hero-from {
+  font-family: var(--body); font-weight: 600; font-size: .7rem;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--cork);
+}
+.price-hero-num {
+  font-family: var(--display); font-size: clamp(3rem, 8vw, 4.4rem);
+  line-height: .9; color: var(--bone); font-variant-numeric: tabular-nums;
+}
+.price-hero-cur {
+  font-family: var(--body); font-weight: 600; font-size: .78rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--on-night-2);
+}
+
+.price-flag {
+  align-self: flex-start;
+  font-family: var(--body); font-weight: 600; font-size: .6rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--night); background: var(--cork);
+  padding: .2rem .55rem; border-radius: 2px;
+}
+
+.price-note {
+  margin-top: 1.5rem; font-size: .9rem;
+  color: var(--on-night-2); max-width: 52ch;
+}
+
+/* ============ plan de estudios ============ */
+
+.route {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  padding-top: 1.3rem;
+  border-top: 2px solid var(--on-bone);
+}
+.stage:nth-child(2) { border-top-color: var(--cork-deep); }
+.stage:nth-child(3) { border-top-color: var(--cork); }
+
+.stage-when {
+  font-family: var(--body); font-weight: 600; font-size: .68rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--cork-deep);
+  margin: 0;
+}
+.stage h3 { font-size: 1.1rem; }
+.stage p { font-size: .95rem; color: var(--on-bone-2); }
+
+.included {
+  margin-top: 3.5rem;
+  padding: 2rem 2.2rem;
+  background: var(--bone-2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.included ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: .6rem 2rem;
+}
+.included li {
+  font-size: .95rem; padding-left: 1.3rem; position: relative;
+}
+.included li::before {
+  content: ''; position: absolute; left: 0; top: .62em;
+  width: .5rem; height: .5rem; border-radius: 50%; background: var(--cork-deep);
+}
+.included-note {
+  font-size: .82rem; color: var(--stage); font-style: italic;
+  border-top: 1px solid var(--line-bone); padding-top: .9rem; margin: 0;
+}
+
+/* ============ control de prototipo ============ */
+
+.proto-toggle {
+  background: none;
+  border: 1px solid rgba(255,255,255,.55);
+  color: #fff;
+  font: inherit;
+  font-size: .72rem;
+  padding: .16rem .6rem;
+  margin-left: .8rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.proto-toggle:hover { background: rgba(255,255,255,.15); }
 .price ul { list-style: none; padding: 0; margin: 1.2rem 0 1.5rem; display: flex; flex-direction: column; gap: .5rem; }
 .price li { font-size: .92rem; color: var(--on-night-2); padding-left: 1.1rem; position: relative; }
 .price li::before { content: '—'; position: absolute; left: 0; color: var(--cork); }
@@ -380,7 +486,10 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
 }
 </style>
 
-<div class="proto-bar">PROTOTIPO — Fase 1. Precios y testimonios son marcadores. Los recuadros punteados indican la foto que hace falta.</div>
+<div class="proto-bar">
+  PROTOTIPO — Fase 1. Los recuadros punteados indican la foto que hace falta.
+  <button class="proto-toggle" id="brand-toggle" type="button">Ver el header en /clases/</button>
+</div>
 
 <nav class="nav">
   <div class="nav-in">
@@ -388,7 +497,7 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
       <img src="../assets/img/logos/gato_blanco.png" alt="">
       <span class="nav-mark">
         <span class="m1">Noctámbulo</span>
-        <span class="m2">Students</span>
+        <span class="m2" id="brand-word">Estudios</span>
       </span>
     </a>
     <div class="nav-links">
@@ -471,55 +580,107 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
   </div>
 </section>
 
+<!-- ============ PLAN DE ESTUDIOS ============ -->
+<section class="on-bone" id="plan">
+  <div class="page">
+    <div class="sec-head">
+      <p class="label">Plan de estudios</p>
+      <h2 class="display">Qué vas a saber hacer, y cuándo</h2>
+      <p class="lead">No es «vienes a que te enseñen». Hay una ruta, se ve dónde estás parado y se sabe qué sigue. Es lo mismo para los tres planes — solo cambia la velocidad con que lo recorres.</p>
+    </div>
+
+    <div class="route">
+      <div class="stage">
+        <p class="stage-when">Mes 1 a 3</p>
+        <h3 class="display">Tocas tu primera canción completa</h3>
+        <p>Postura, técnica base y los recursos mínimos para sostener un tema de principio a fin. El objetivo del trimestre es que toques algo que reconozcas, no que domines ejercicios.</p>
+      </div>
+      <div class="stage">
+        <p class="stage-when">Mes 4 a 6</p>
+        <h3 class="display">Sales del repertorio de principiante</h3>
+        <p>Se suma lectura aplicada, teoría solo en la medida en que te sirva, y repertorio elegido contigo. Aquí es donde la mayoría deja de sentirse principiante.</p>
+      </div>
+      <div class="stage">
+        <p class="stage-when">Mes 7 a 12</p>
+        <h3 class="display">Tocas con otros</h3>
+        <p>El paso que casi ninguna escuela da: llevarte de tocar solo en un cuarto a sostener tu instrumento dentro de una banda, con la sala de ensayo y el estudio a un pasillo de distancia.</p>
+      </div>
+    </div>
+
+    <div class="included">
+      <p class="label" style="color:var(--cork-deep)">Incluido en cualquier plan</p>
+      <ul>
+        <li>Plan de estudio armado para ti</li>
+        <li>Material y partituras</li>
+        <li>Instrumentos y amplificadores del estudio</li>
+        <li>Evaluación de avance</li>
+        <li>Acceso a tocar con otros alumnos</li>
+        <li>Grabación de tu avance</li>
+      </ul>
+      <p class="included-note">Marcador — esta lista es la que hace que el precio se vea chico. Hay que llenarla con lo que realmente das, entre más específica mejor.</p>
+    </div>
+
+    <a href="#" class="btn btn-ghost-bone" style="margin-top:2.5rem">Ver el plan de estudios completo</a>
+  </div>
+</section>
+
 <!-- ============ PRECIOS ============ -->
 <section class="on-night-2" id="precios">
   <div class="page">
     <div class="sec-head">
       <p class="label">Tarifas</p>
-      <h2 class="display">Los precios, sin rodeos</h2>
-      <p class="lead">Publicarlos completos es deliberado: te ahorra el mensaje de «¿cuánto cuesta?» y hace que los buscadores de IA puedan responder por nosotros.</p>
+      <h2 class="display">Desde $850 al mes</h2>
+      <p class="lead">Mensualidad, no clase suelta. Sin inscripción, sin anualidad y sin contrato de permanencia — si un mes no puedes, no pagas.</p>
+    </div>
+
+    <div class="price-hero">
+      <div class="price-hero-fig">
+        <span class="price-hero-from">desde</span>
+        <span class="price-hero-num">$850</span>
+        <span class="price-hero-cur">MXN / mes</span>
+      </div>
+      <p>Es el plan de una clase por semana. Los de dos y tres clases bajan el costo por sesión — te pasamos la lista completa por WhatsApp o en tu clase de prueba.</p>
     </div>
 
     <div class="price-grid">
       <div class="price">
-        <span class="pend">Pendiente</span>
-        <p class="label" style="color:var(--on-night-2)">Clase suelta</p>
-        <p class="price-tag">$—</p>
-        <p class="price-per">por sesión de 60 minutos</p>
+        <p class="label" style="color:var(--on-night-2)">1 clase por semana</p>
+        <p class="price-plan">4 al mes</p>
+        <p class="price-per">El ritmo de quien empieza</p>
         <ul>
-          <li>Para probar sin compromiso</li>
-          <li>Agenda flexible</li>
+          <li>Sesiones de 60 minutos</li>
+          <li>Plan de estudio personalizado</li>
           <li>Material incluido</li>
         </ul>
-        <a href="#contacto" class="btn btn-ghost-night">Agendar</a>
+        <a href="#contacto" class="btn btn-ghost-night">Me interesa</a>
       </div>
 
       <div class="price hot">
-        <span class="pend">Pendiente</span>
-        <p class="label">Mensual · el más tomado</p>
-        <p class="price-tag">$—</p>
-        <p class="price-per">4 clases al mes</p>
+        <span class="price-flag">El más tomado</span>
+        <p class="label">2 clases por semana</p>
+        <p class="price-plan">8 al mes</p>
+        <p class="price-per">Donde se nota el avance</p>
         <ul>
-          <li>Una clase por semana</li>
+          <li>Todo lo del plan anterior</li>
+          <li>Mejor costo por sesión</li>
           <li>Seguimiento de avance</li>
-          <li>Mejor precio por clase</li>
         </ul>
-        <a href="#contacto" class="btn btn-solid">Agendar</a>
+        <a href="#contacto" class="btn btn-solid">Me interesa</a>
       </div>
 
       <div class="price">
-        <span class="pend">Pendiente</span>
-        <p class="label" style="color:var(--on-night-2)">Intensivo</p>
-        <p class="price-tag">$—</p>
-        <p class="price-per">8 clases al mes</p>
+        <p class="label" style="color:var(--on-night-2)">3 clases por semana</p>
+        <p class="price-plan">12 al mes</p>
+        <p class="price-per">Intensivo</p>
         <ul>
-          <li>Dos clases por semana</li>
-          <li>Plan de estudio estructurado</li>
+          <li>Todo lo de los planes anteriores</li>
           <li>Prioridad de horario</li>
+          <li>Evaluación mensual de avance</li>
         </ul>
-        <a href="#contacto" class="btn btn-ghost-night">Agendar</a>
+        <a href="#contacto" class="btn btn-ghost-night">Me interesa</a>
       </div>
     </div>
+    <p class="price-note">Los tres planes dan acceso al mismo plan de estudios. Lo que cambia es qué tan rápido lo recorres.</p>
   </div>
 </section>
 
@@ -671,3 +832,19 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
     </div>
   </div>
 </footer>
+
+<script>
+  /* Solo prototipo. En el sitio real esto NO es JavaScript: cada página
+     imprime la palabra que le toca según su sección, desde la plantilla.
+     El home y /estudio/* dicen «Estudios»; /clases/* dice «Students». */
+  (function () {
+    var word = document.getElementById('brand-word');
+    var btn  = document.getElementById('brand-toggle');
+    if (!word || !btn) return;
+    btn.addEventListener('click', function () {
+      var enClases = word.textContent.trim() === 'Students';
+      word.textContent = enClases ? 'Estudios' : 'Students';
+      btn.textContent  = enClases ? 'Ver el header en /clases/' : 'Ver el header en el home';
+    });
+  })();
+</script>
