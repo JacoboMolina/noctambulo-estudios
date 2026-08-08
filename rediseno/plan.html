@@ -1,0 +1,762 @@
+<title>Plan de rediseño — Noctámbulo Estudios</title>
+<style>
+  :root {
+    --ink:        #14161C;
+    --ink-soft:   #48505F;
+    --ink-faint:  #798395;
+    --ground:     #F1F2F4;
+    --surface:    #FFFFFF;
+    --surface-2:  #E7E9ED;
+    --line:       #D8DCE3;
+    --line-soft:  #E6E9EE;
+    --accent:     #A8660D;
+    --accent-dim: #C99A4E;
+    --flag:       #9B3A2E;
+    --shadow:     0 1px 2px rgba(20,22,28,.05), 0 8px 24px -12px rgba(20,22,28,.18);
+
+    --display: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --body:    Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    --mono:    ui-monospace, SFMono-Regular, "Cascadia Mono", "Segoe UI Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink:        #E6E9EF;
+      --ink-soft:   #9BA5B6;
+      --ink-faint:  #6A7382;
+      --ground:     #0F1218;
+      --surface:    #171B23;
+      --surface-2:  #1E232C;
+      --line:       #2A313D;
+      --line-soft:  #232935;
+      --accent:     #E8A33D;
+      --accent-dim: #A2803F;
+      --flag:       #E08573;
+      --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ink:        #E6E9EF;
+    --ink-soft:   #9BA5B6;
+    --ink-faint:  #6A7382;
+    --ground:     #0F1218;
+    --surface:    #171B23;
+    --surface-2:  #1E232C;
+    --line:       #2A313D;
+    --line-soft:  #232935;
+    --accent:     #E8A33D;
+    --accent-dim: #A2803F;
+    --flag:       #E08573;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 47rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 4.5rem 0 2.5rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--display);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -.025em;
+    line-height: 1.05;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .standfirst {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 34rem;
+    margin: 0;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.5rem;
+    font-family: var(--mono);
+    font-size: .74rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  /* ---------- sections ---------- */
+
+  section {
+    padding-top: 3.5rem;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin: 0 0 1.25rem;
+    display: flex;
+    align-items: baseline;
+    gap: .7rem;
+  }
+
+  h2 .num {
+    font-family: var(--mono);
+    font-size: .8rem;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0;
+    flex: none;
+  }
+
+  h3 {
+    font-family: var(--display);
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -.005em;
+    margin: 2rem 0 .6rem;
+  }
+
+  p { margin: 0 0 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  a {
+    color: var(--ink);
+    text-decoration-color: var(--accent);
+    text-underline-offset: .18em;
+    text-decoration-thickness: 1.5px;
+  }
+  a:hover { color: var(--accent); }
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: .82em;
+    background: var(--surface-2);
+    padding: .12em .38em;
+    border-radius: 3px;
+    word-break: break-word;
+  }
+
+  strong { font-weight: 700; }
+
+  ul, ol { margin: 0 0 1rem; padding-left: 1.3rem; }
+  li { margin-bottom: .45rem; }
+  li:last-child { margin-bottom: 0; }
+
+  /* ---------- callouts ---------- */
+
+  .lede {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.4rem 1.5rem;
+    margin-top: 2.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .lede p { font-size: 1.05rem; }
+
+  .flag {
+    border-left: 3px solid var(--flag);
+    background: var(--surface);
+    border-radius: 4px;
+    padding: 1.1rem 1.3rem;
+    margin: 1.5rem 0;
+  }
+
+  .flag .label {
+    font-family: var(--display);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--flag);
+    display: block;
+    margin-bottom: .5rem;
+  }
+
+  .flag p { font-size: .95rem; }
+
+  /* ---------- phase list ---------- */
+
+  .phases {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .phase-head {
+    display: flex;
+    align-items: baseline;
+    gap: .8rem;
+    flex-wrap: wrap;
+    margin-bottom: .5rem;
+  }
+
+  .phase-num {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    flex: none;
+  }
+
+  .phase-name {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -.015em;
+    margin: 0;
+  }
+
+  .phase-goal {
+    font-size: .95rem;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .phase ul { margin-bottom: 0; font-size: .95rem; }
+
+  .out {
+    margin-top: 1rem;
+    padding-top: .85rem;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--display);
+    font-size: .82rem;
+    color: var(--ink-soft);
+  }
+
+  .out b {
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-right: .5rem;
+  }
+
+  /* ---------- tree + tables ---------- */
+
+  .scroller {
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    margin: 1.25rem 0;
+  }
+
+  .tree {
+    font-family: var(--mono);
+    font-size: .8rem;
+    line-height: 1.85;
+    margin: 0;
+    padding: 1.25rem 1.4rem;
+    white-space: pre;
+    color: var(--ink);
+  }
+
+  .tree .c { color: var(--ink-faint); }
+  .tree .n { color: var(--accent); }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: var(--display);
+    font-size: .87rem;
+  }
+
+  th {
+    text-align: left;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 700;
+    padding: .85rem 1.1rem;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: .7rem 1.1rem;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td.kw { font-family: var(--mono); font-size: .78rem; }
+  td.tgt { color: var(--ink-soft); font-family: var(--mono); font-size: .76rem; }
+
+  /* ---------- inputs list ---------- */
+
+  .asks {
+    counter-reset: ask;
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .asks li {
+    counter-increment: ask;
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+    gap: .9rem;
+    margin: 0;
+  }
+
+  .asks li::before {
+    content: counter(ask);
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--accent);
+    padding-top: .18rem;
+  }
+
+  .asks b {
+    font-family: var(--display);
+    font-size: .95rem;
+    display: block;
+    margin-bottom: .15rem;
+  }
+
+  .asks span {
+    font-size: .95rem;
+    color: var(--ink-soft);
+  }
+
+  footer {
+    margin-top: 4.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: .74rem;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 34rem) {
+    body { font-size: 16px; }
+    .masthead { padding-top: 3rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">Plan de trabajo</span>
+    <h1>De estudio con clases,<br>a escuela de música</h1>
+    <p class="standfirst">Rediseño y reposicionamiento de noctambuloestudios.com alrededor de las clases como línea principal de negocio.</p>
+    <div class="meta">
+      <span>8 agosto 2026</span>
+      <span>Noctámbulo Estudios · Tlaxcala</span>
+    </div>
+  </header>
+
+  <div class="lede">
+    <p><b>El punto de partida no es el diseño.</b> El sitio actual está bien construido, pero su arquitectura dice que Noctámbulo es un estudio que además da clases. El negocio ahora dice lo contrario. Rediseñar sobre esa estructura sería pintar una casa cuyos cuartos están mal repartidos. Primero se reparten los cuartos.</p>
+  </div>
+
+  <!-- ============ 1 ============ -->
+  <section>
+    <h2><span class="num">01</span> Diagnóstico</h2>
+
+    <h3>La jerarquía contradice al negocio</h3>
+    <p>El <code>&lt;h1&gt;</code> del home es <em>«Tu música merece un lugar a la altura»</em> — una promesa de estudio, no de escuela. El subtítulo lista los tres servicios con peso idéntico. Y el badge <em>«Popular»</em> está sobre Sala de Ensayo, no sobre Clases. Un visitante que llega buscando dónde aprender guitarra tiene que deducir que este es el lugar.</p>
+
+    <h3>Todo el catálogo de clases vive en una sola URL</h3>
+    <p><code>clases.html</code> existe, está bien escrita, y cubre cuatro instrumentos. Pero ofreces ocho, y cada uno es una búsqueda distinta: quien busca <em>clases de canto</em> y quien busca <em>clases de batería</em> no son la misma persona ni quieren leer la misma página. Hoy compiten entre sí por la misma URL, y ninguna gana.</p>
+
+    <h3>El SEO técnico está a medias</h3>
+    <p>Solo el home tiene datos estructurados. Las páginas de servicio no tienen ninguno. No hay etiquetas <code>canonical</code> en ningún archivo. El <code>sitemap.xml</code> omite páginas y mezcla fechas de 2025 con 2026. Falta un <code>404.html</code>.</p>
+
+    <h3>El mercado local está abierto</h3>
+    <p>Busqué el panorama competitivo en Tlaxcala. Los primeros resultados los ocupan directorios — infoescuelas, topescuelas, tusclases — no escuelas con sitios propios. El único competidor con presencia web real es Suzukids, enfocado a niños con método Suzuki. Adolescentes, adultos, rock y producción están sin atender. Esa es la puerta.</p>
+
+    <div class="flag">
+      <span class="label">Requiere verificación antes de publicar</span>
+      <p>Los tres testimonios en <code>clases.html</code> (Rodrigo M., Laura G., Alejandro F.) tienen forma de texto de relleno. Si no corresponden a alumnos reales hay que sustituirlos: marcar reseñas inventadas con datos estructurados es sancionable por Google, y en una ciudad del tamaño de Tlaxcala el costo reputacional es concreto. Lo mismo aplica a las cifras <em>30+ alumnos · 25+ proyectos · 80+ horas</em> del home.</p>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section>
+    <h2><span class="num">02</span> La decisión central</h2>
+    <p>El home deja de presentar tres servicios en paralelo y pasa a ser el home de una escuela de música. Ensayo y grabación no desaparecen ni se degradan: se mueven a un segundo nivel bien construido, con sus propias páginas completas y sus propios CTAs. Lo que cambia es qué recibe la atención primaria y qué recibe la secundaria.</p>
+    <p>Esto no es un cambio cosmético de textos. Redefine el <code>h1</code>, el orden de las secciones, la navegación, los datos estructurados y el mapa de palabras clave del sitio entero.</p>
+
+    <h3>Noctámbulo Students</h3>
+    <p>Se implementa como <b>sub-marca visual dentro del mismo sitio y el mismo dominio</b>: identidad propia para la sección de clases — variante de logo, color, tratamiento — sobre la navegación existente. La regla que la mantiene sana: la marca vive en lo visual, nunca en los títulos ni en las URLs. Nadie busca «Noctámbulo Students» todavía; buscan «clases de guitarra en Tlaxcala». Los <code>&lt;title&gt;</code> se escriben para la búsqueda, el logotipo se encarga de la marca.</p>
+    <p>El portal de alumnos — tareas, progreso, material — es el destino correcto de esta sub-marca, pero es <b>otro producto</b>: requiere cuentas, autenticación y base de datos, cosas que un sitio estático en GitHub Pages no puede hacer. Vivirá en <code>students.noctambuloestudios.com</code> cuando llegue el momento. Lo que este plan hace es reservarle el nombre, la identidad y el espacio en la navegación, sin tomar decisiones que después estorben.</p>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section>
+    <h2><span class="num">03</span> Arquitectura de URLs</h2>
+    <p>Migración de archivos <code>.html</code> planos a carpetas. Con ocho instrumentos y un blog en el horizonte, dejó de ser preferencia estética. El sitio es joven y tiene poca autoridad acumulada, así que migrar ahora cuesta poco; migrar en un año cuesta bastante más.</p>
+
+    <div class="scroller">
+<pre class="tree">/                                  <span class="c">Home — escuela primero</span>
+│
+├── clases/                        <span class="c">NOCTÁMBULO STUDENTS — donde se aprende</span>
+│   ├── guitarra-electrica/        <span class="c">Hub compite por «escuela de música en Tlaxcala»</span>
+│   ├── guitarra-acustica/
+│   ├── bajo/
+│   ├── bateria/
+│   ├── piano/
+│   ├── canto/
+│   ├── violin/
+│   └── produccion-musical/
+│
+├── estudio/                       <span class="n">nuevo</span> <span class="c">NOCTÁMBULO ESTUDIOS — donde se hace</span>
+│   ├── sala-de-ensayo/
+│   ├── grabacion/
+│   └── live-sessions/             <span class="n">nueva</span>
+│
+├── nosotros/                      <span class="c">Historia + equipo docente</span>
+├── galeria/
+├── preguntas-frecuentes/          <span class="n">nueva</span>
+├── agendar/
+├── gracias/
+└── 404.html                       <span class="n">nueva</span></pre>
+
+    <p>Las dos ramas superiores no son solo orden de archivos: son la estructura del negocio hecha navegación. <code>/clases/</code> es Noctámbulo Students y <code>/estudio/</code> es Noctámbulo Estudios, lo que convierte la sub-marca de adorno visual en arquitectura. Un visitante entiende en un vistazo que hay dos cosas aquí y cuál le toca.</p>
+    <p>El hub <code>/estudio/</code> además da un destino a la intención combinada — quien busca «estudio de grabación Tlaxcala» sin saber todavía si quiere grabar, ensayar o hacer una Live Session — y es el lugar natural para la venta cruzada hacia clases, y al revés.</p>
+    </div>
+
+    <p>GitHub Pages no emite redirecciones 301 nativas. Las URLs viejas se conservan como archivos de redirección con <code>meta refresh</code> más <code>rel="canonical"</code> apuntando a la nueva — no es tan limpio como un 301 real, pero preserva el poco enlazado externo que existe y Google lo procesa correctamente.</p>
+
+    <h3>Ocho páginas de instrumento, o menos</h3>
+    <p>Una página por instrumento solo funciona si cada una tiene contenido propio: profesor con nombre y trayectoria, plan de estudio, repertorio, precio, equipo disponible. Ocho variaciones del mismo texto con la palabra cambiada es contenido duplicado, y Google indexa una y descarta el resto — el esfuerzo se pierde entero.</p>
+    <p>El sitio actual muestra dos profesores. El criterio para decidir el alcance real es simple: <b>cada instrumento con profesor asignado recibe página propia; los demás se agrupan en el hub hasta tenerlo.</b> Es preferible arrancar con cuatro páginas sólidas y crecer, que publicar ocho a medias.</p>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section>
+    <h2><span class="num">04</span> Fases</h2>
+
+    <div class="phases">
+
+      <article class="phase">
+        <div class="phase-head">
+          <span class="phase-num">Fase 0</span>
+          <h3 class="phase-name">Fundación</h3>
+        </div>
+        <p class="phase-goal">Nada se construye hasta que esto esté resuelto. Es donde empezamos.</p>
+        <ul>
+          <li>Matriz instrumento × profesor × contenido disponible — define cuántas páginas se construyen realmente</li>
+          <li>Inventario del material existente: qué fotos y videos hay, cuáles sirven, qué falta fotografiar</li>
+          <li>Tabla de precios definitiva por instrumento y paquete (reemplaza los <code>$XXX</code>)</li>
+          <li>Recolección de testimonios reales, con nombre y permiso de uso</li>
+          <li>Decisión sobre el sistema de construcción — ver <em>Deuda técnica</em></li>
+          <li>Congelar el árbol de URLs</li>
+        </ul>
+        <p class="out"><b>Entregable</b> Documento de arquitectura + brief fotográfico de lo que falta</p>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <span class="phase-num">Fase 1</span>
+          <h3 class="phase-name">Sistema visual</h3>
+        </div>
+        <p class="phase-goal">La identidad nueva, probada en una sola página antes de replicarse.</p>
+        <ul>
+          <li>Paleta con carácter propio. Hoy el sitio corre sobre grises casi neutros (<code>--color-accent: #2C2C2C</code>): funciona, pero no distingue. Las referencias que elegiste tienen todas color con intención</li>
+          <li>Pareja tipográfica — display para títulos, texto para lectura. <code>Inter</code> sola no sostiene una identidad</li>
+          <li>Tratamiento de imagen: fotografía a sangre, recortes de fondo integrados con texto, uso del video existente</li>
+          <li>Variante visual de Noctámbulo Students</li>
+          <li>Biblioteca de componentes: tarjetas, precios, testimonios, CTAs, cabeceras</li>
+        </ul>
+        <p class="out"><b>Entregable</b> Home nuevo completo, para aprobar antes de tocar el resto</p>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <span class="phase-num">Fase 2</span>
+          <h3 class="phase-name">Núcleo escuela</h3>
+        </div>
+        <p class="phase-goal">El corazón del negocio, construido con el sistema ya aprobado.</p>
+        <ul>
+          <li>Home reposicionado: <code>h1</code> de escuela, clases como sección principal, ensayo y grabación en segundo nivel</li>
+          <li>Hub <code>/clases/</code> — la página que compite por «escuela de música en Tlaxcala»</li>
+          <li>Páginas por instrumento, según la matriz de Fase 0</li>
+          <li>Precios completos y visibles en cada página</li>
+          <li>Datos estructurados <code>Course</code> y <code>CourseInstance</code> por instrumento</li>
+        </ul>
+        <p class="out"><b>Entregable</b> Sección de clases completa y publicable</p>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <span class="phase-num">Fase 3</span>
+          <h3 class="phase-name">El estudio</h3>
+        </div>
+        <p class="phase-goal">Ensayo y grabación mantienen calidad completa en su nuevo lugar.</p>
+        <ul>
+          <li>Hub <code>/estudio/</code> — la contraparte de <code>/clases/</code>, cierra la dualidad Students / Estudios</li>
+          <li><code>/estudio/sala-de-ensayo/</code> y <code>/estudio/grabacion/</code> migradas al sistema visual nuevo</li>
+          <li><code>/estudio/live-sessions/</code> — hoy el servicio vive escondido dentro de grabación pese a ser el más vistoso</li>
+          <li>Precios y paquetes de ambos servicios</li>
+          <li>Enlazado cruzado con clases — un alumno es cliente natural de la sala de ensayo</li>
+          <li>Aprovechamiento del material de Live Sessions ya producido</li>
+        </ul>
+        <p class="out"><b>Entregable</b> Sitio completo en el sistema nuevo</p>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <span class="phase-num">Fase 4</span>
+          <h3 class="phase-name">Confianza y conversión</h3>
+        </div>
+        <p class="phase-goal">Lo que convierte a un visitante interesado en alumno inscrito.</p>
+        <ul>
+          <li><code>/nosotros/</code> con equipo docente ampliado — foto, instrumento y trayectoria real por profesor</li>
+          <li>Testimonios reales, con datos estructurados correctos</li>
+          <li><code>/preguntas-frecuentes/</code> — página estratégica, la explico en la sección de buscadores de IA</li>
+          <li><code>/agendar/</code> revisada: el flujo actual con pestañas de Cal.com funciona, pero debe reordenarse con Clases al frente</li>
+          <li>Página 404 con identidad propia</li>
+        </ul>
+        <p class="out"><b>Entregable</b> Embudo de conversión completo</p>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <span class="phase-num">Fase 5</span>
+          <h3 class="phase-name">SEO técnico y buscadores de IA</h3>
+        </div>
+        <p class="phase-goal">Se hace al final, cuando todas las páginas existen y no van a cambiar de URL.</p>
+        <ul>
+          <li><code>canonical</code>, <code>title</code> y <code>description</code> únicos en cada página</li>
+          <li>Datos estructurados completos: <code>MusicSchool</code>, <code>Course</code>, <code>Person</code>, <code>FAQPage</code>, <code>BreadcrumbList</code></li>
+          <li><code>sitemap.xml</code> regenerado y reenviado a Search Console</li>
+          <li><code>llms.txt</code> en la raíz</li>
+          <li>Google Business Profile: alta, verificación y campaña de reseñas reales</li>
+          <li>Alta en los directorios que hoy ocupan los primeros resultados</li>
+          <li>Migración de imágenes a WebP con <code>srcset</code> responsivo</li>
+        </ul>
+        <p class="out"><b>Entregable</b> Sitio indexable, citable y medible</p>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <span class="phase-num">Fase 6</span>
+          <h3 class="phase-name">Contenido continuo</h3>
+        </div>
+        <p class="phase-goal">Ya no es un proyecto, es una rutina. El SEO se gana con constancia.</p>
+        <ul>
+          <li><code>/blog/</code> con artículos que respondan búsquedas reales de principiantes</li>
+          <li>Reseñas nuevas en Google Business cada mes</li>
+          <li>Videos de alumnos — el activo con más potencial que ya estás produciendo</li>
+          <li>Revisión trimestral de Search Console: qué búsquedas traen gente y cuáles no</li>
+        </ul>
+        <p class="out"><b>Entregable</b> Proceso, no página</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section>
+    <h2><span class="num">05</span> Mapa de palabras clave</h2>
+    <p>Una página, una intención de búsqueda. Cuando dos páginas persiguen la misma frase compiten entre ellas y Google reparte la fuerza a la mitad.</p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Búsqueda objetivo</th><th>Página</th><th>Intención</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="kw">escuela de música Tlaxcala</td><td class="tgt">/clases/</td><td>Comparar opciones</td></tr>
+          <tr><td class="kw">academia de música Tlaxcala</td><td class="tgt">/clases/</td><td>Comparar opciones</td></tr>
+          <tr><td class="kw">clases de guitarra Tlaxcala</td><td class="tgt">/clases/guitarra-electrica/</td><td>Listo para inscribirse</td></tr>
+          <tr><td class="kw">clases de batería Tlaxcala</td><td class="tgt">/clases/bateria/</td><td>Listo para inscribirse</td></tr>
+          <tr><td class="kw">clases de canto Tlaxcala</td><td class="tgt">/clases/canto/</td><td>Listo para inscribirse</td></tr>
+          <tr><td class="kw">clases de piano Tlaxcala</td><td class="tgt">/clases/piano/</td><td>Listo para inscribirse</td></tr>
+          <tr><td class="kw">clases de violín Tlaxcala</td><td class="tgt">/clases/violin/</td><td>Listo para inscribirse</td></tr>
+          <tr><td class="kw">clases de bajo Tlaxcala</td><td class="tgt">/clases/bajo/</td><td>Listo para inscribirse</td></tr>
+          <tr><td class="kw">producción musical Tlaxcala</td><td class="tgt">/clases/produccion-musical/</td><td>Listo para inscribirse</td></tr>
+          <tr><td class="kw">cuánto cuestan las clases de guitarra</td><td class="tgt">/clases/guitarra-electrica/</td><td>Comparando precio</td></tr>
+          <tr><td class="kw">clases de música para niños Tlaxcala</td><td class="tgt">/preguntas-frecuentes/</td><td>Padre investigando</td></tr>
+          <tr><td class="kw">clases de música para adultos Tlaxcala</td><td class="tgt">/preguntas-frecuentes/</td><td>Adulto con dudas</td></tr>
+          <tr><td class="kw">renta de sala de ensayo Tlaxcala</td><td class="tgt">/estudio/sala-de-ensayo/</td><td>Banda buscando espacio</td></tr>
+          <tr><td class="kw">estudio de grabación Tlaxcala</td><td class="tgt">/estudio/grabacion/</td><td>Proyecto con presupuesto</td></tr>
+          <tr><td class="kw">estudio de música Tlaxcala</td><td class="tgt">/estudio/</td><td>Aún no sabe qué necesita</td></tr>
+          <tr><td class="kw">video en vivo banda Tlaxcala</td><td class="tgt">/estudio/live-sessions/</td><td>Proyecto con presupuesto</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section>
+    <h2><span class="num">06</span> Aparecer en buscadores de IA</h2>
+    <p>Cuando alguien le pregunta a ChatGPT, Gemini o Perplexity <em>«¿dónde puedo aprender guitarra en Tlaxcala?»</em>, el modelo no rankea páginas: extrae hechos y cita fuentes. Optimizar para eso se parece al SEO clásico en la base, pero premia cosas distintas.</p>
+
+    <h3>Lo que estos sistemas premian</h3>
+    <ul>
+      <li><b>Datos concretos en texto plano.</b> Precios, duraciones, horarios y dirección escritos como afirmaciones, no como imágenes ni como «consúltanos». Por eso publicar precios completos — que ya decidiste — es directamente una jugada de esta sección.</li>
+      <li><b>Contenido con forma de respuesta.</b> Una pregunta como encabezado y una respuesta directa debajo, sin rodeos de marketing. Esa es la función real de <code>/preguntas-frecuentes/</code>: es la página más citable del sitio.</li>
+      <li><b>Datos estructurados.</b> <code>Course</code>, <code>Person</code>, <code>FAQPage</code> y <code>MusicSchool</code> le dan al modelo hechos ya etiquetados en vez de prosa que tiene que interpretar.</li>
+      <li><b>Coherencia entre fuentes.</b> Nombre, dirección y teléfono idénticos en el sitio, Google Business, Facebook, Instagram y directorios. Las discrepancias reducen la confianza en la fuente.</li>
+      <li><b>Presencia en terceros.</b> Los modelos citan mucho a los directorios. Infoescuelas, topescuelas y tusclases ya rankean para tus búsquedas — estar ahí, con datos correctos, es trabajo barato de alto retorno.</li>
+      <li><b><code>llms.txt</code></b> en la raíz: un resumen en markdown de qué es Noctámbulo, qué ofrece, dónde está y a qué precio. Es un estándar emergente, todavía no universalmente adoptado, pero cuesta media hora.</li>
+    </ul>
+
+    <h3>El factor que más pesa, y no está en el código</h3>
+    <p>Para preguntas locales, estos sistemas se apoyan fuertemente en Google Business Profile y en el volumen y calidad de sus reseñas. Un perfil verificado con veinte reseñas reales influye más en si te citan que cualquier ajuste técnico de este documento. Si algo de este plan se hace esta semana, que sea eso.</p>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section>
+    <h2><span class="num">07</span> Deuda técnica</h2>
+
+    <h3>El problema que crece con el rediseño</h3>
+    <p>La navegación y el pie de página están copiados a mano en cada archivo. Con siete páginas ya es incómodo; con quince — al sumar las de instrumento — cada cambio de menú se vuelve quince ediciones idénticas, y basta que una se olvide para que el sitio quede inconsistente. Hay dos salidas:</p>
+    <ul>
+      <li><b>Script de Node con parciales.</b> Unas cincuenta líneas, cero dependencias, aprovecha que ya tienes <code>package.json</code> y <code>scripts/</code>. Riesgo mínimo, resuelve solo el problema de duplicación.</li>
+      <li><b>Astro.</b> Genera HTML estático puro, se despliega igual en GitHub Pages, y trae optimización de imágenes integrada — resuelve de paso la conversión a WebP y los <code>srcset</code> responsivos, que hoy son trabajo manual. Se mantiene activamente y no impone formatos propietarios: el HTML resultante es HTML normal, así que se puede abandonar sin quedar atrapado.</li>
+    </ul>
+    <p><b>Recomiendo Astro</b>, porque el costo extra se paga solo con la optimización de imágenes y porque el blog de la Fase 6 sería trivial. Pero el plan funciona igual con la opción simple — es una decisión reversible, no un cimiento.</p>
+
+    <h3>Correcciones puntuales</h3>
+    <ul>
+      <li>El script de Google Analytics está antes de <code>&lt;meta charset&gt;</code> en todos los archivos; debe ir después</li>
+      <li><code>vid_2.mp4</code> pesa 1.6 MB y se reproduce automáticamente en la cabecera de <code>clases.html</code> — castiga la carga en móvil, que es donde está tu audiencia</li>
+      <li>El script de Instagram en <code>nosotros.html</code> es pesado y de terceros; conviene cargarlo solo al hacer scroll</li>
+      <li><code>styles.css</code> y <code>styles.min.css</code> se mantienen a mano por separado: tarde o temprano se desincronizan. Debe minificarse en el build</li>
+      <li>Las fotos son JPG sin versión WebP, salvo los logos</li>
+      <li><code>assets/data/gallery.json</code> es un archivo huérfano: nadie lo lee. Los datos reales de la galería están hardcodeados en <code>js/script.js:242</code>, y el JSON quedó desactualizado — referencia siete imágenes que ya no existen. No rompe nada hoy, pero es una trampa para quien lo edite creyendo que sirve. Se borra, o se convierte en la fuente real</li>
+      <li>Los dos videos cargan pista de audio AAC aunque se reproduzcan en mudo</li>
+    </ul>
+  </section>
+
+  <!-- ============ 8 ============ -->
+  <section>
+    <h2><span class="num">08</span> Inventario de material</h2>
+    <p>Revisé las 28 fotografías y los 2 videos del repositorio, uno por uno. Este es el estado real del material contra lo que exige la dirección visual que elegiste.</p>
+
+    <h3>La identidad ya existe — construida en el espacio, ausente en la web</h3>
+    <p>El hallazgo más útil no es una foto sino un desfase. El local ya tiene una identidad visual resuelta y con carácter, y el sitio no la usa:</p>
+    <ul>
+      <li><b>El letrero retroiluminado.</b> «NOCTÁMBULO» en una sans condensada, pesada, con «ESTUDIOS» debajo en tracking muy abierto. Esa <em>es</em> la tipografía display de la marca, ya fabricada en acrílico. El sitio corre en <code>Inter</code>, que no se le parece. La Fase 1 debería partir de ahí en vez de inventar.</li>
+      <li><b>Los paneles acústicos.</b> El patrón perforado de guiones y puntos sobre corcho aparece en casi todas las fotos. Lee como forma de onda, como tarjeta perforada, como código Morse. Es un motivo gráfico distintivo y apropiable — sirve como textura, como separador de sección, como fondo. Vale más que cualquier patrón que yo pudiera generar.</li>
+      <li><b>La paleta real del espacio:</b> blanco cálido de muro, corcho tostado de los paneles, negro de los difusores, luz de tungsteno del candelabro, y el barrido de LED azul y magenta durante las sesiones. Ahí está la paleta, no hay que inventarla.</li>
+      <li><b>El gato blanco</b> del espejo y <b>el candelabro</b> — detalles con personalidad que hoy no aparecen en el sitio.</li>
+    </ul>
+
+    <div class="flag">
+      <span class="label">El hueco crítico</span>
+      <p><b>No existe una sola fotografía de una clase.</b> Ni un profesor con un alumno, ni un alumno tocando, ni un niño frente a un instrumento. Todo el material documenta <em>gear</em>, sala y bandas ensayando — que era exactamente lo correcto para un estudio, y es insuficiente para una escuela. Una escuela de música se vende con caras aprendiendo, y ahora mismo no tenemos ninguna.</p>
+      <p>Las dos fotos de profesores (<code>profesores/guitarra.jpg</code>, <code>profesores/bateria.jpg</code>) son <b>capturas de video</b>, no fotografías: 567×645 y 805×745 píxeles, con desenfoque de movimiento, ambos de perfil y sin contacto visual. No sirven como retrato docente. En una escuela los profesores son el producto.</p>
+    </div>
+
+    <h3>Resolución insuficiente para la dirección elegida</h3>
+    <p>Elegiste fotografía a sangre y recortes de fondo integrados con texto. Eso exige originales grandes. El repositorio tiene lo contrario: la mayoría de las imágenes rondan los 600×800 px con unos 40 KB — optimizadas para un sitio de hace diez años. A pantalla completa en una pantalla retina se van a ver blandas. Las excepciones utilizables son <code>principal_noctambulo.jpg</code> (1512×1205), <code>ustedes.jpg</code> (1000×1333) y <code>equipo/rack.jpg</code> (1200×1600).</p>
+    <p>Casi seguro existen los originales en el teléfono o la cámara de donde salieron. <b>Recuperar esos archivos sin comprimir es la tarea de menor esfuerzo y mayor impacto de toda la Fase 0.</b> Si aparecen, buena parte del brief de abajo se reduce.</p>
+
+    <h3>Sobre quién aparece en las fotos</h3>
+    <p>Un detalle de posicionamiento que salta al ver la sección «Ustedes»: entre las bandas hay un grupo norteño con sombrero y acordeón, y una banda de rock con integrantes claramente adultos. La clientela real es más ancha que «rock para adolescentes». Vale la pena que el sitio no se cierre a un solo perfil.</p>
+
+    <h3>Video</h3>
+    <p><code>logo_video.mp4</code> — 1080×1080, 7.3 s, 321 KB. Sirve, ya se usa bien.<br>
+    <code>vid_2.mp4</code> — 1280×720, 13.7 s, 1.6 MB, en reproducción automática detrás del título de <code>clases.html</code>. Ambos cargan pista de audio AAC pese a reproducirse en mudo: peso muerto que se elimina al reencodear.</p>
+
+    <h3>Brief fotográfico</h3>
+    <p>Una sola sesión bien planeada cubre casi todo. Ordenado por lo que más mueve la aguja:</p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Toma</th><th>Destino</th><th>Prioridad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Retrato de cada profesor, mirando a cámara, con su instrumento, fondo limpio</td><td class="tgt">/nosotros/ · página de instrumento</td><td>Crítica</td></tr>
+          <tr><td>Profesor y alumno en clase, plano medio, interacción real</td><td class="tgt">/clases/ · home</td><td>Crítica</td></tr>
+          <tr><td>Manos de alumno sobre el instrumento, plano cerrado</td><td class="tgt">Página de instrumento</td><td>Alta</td></tr>
+          <tr><td>Alumno de espaldas frente al profesor — sirve cuando no hay permiso de imagen</td><td class="tgt">Cualquiera</td><td>Alta</td></tr>
+          <tr><td>Un retrato por instrumento ofrecido, con el equipo real disponible</td><td class="tgt">Páginas de instrumento</td><td>Alta</td></tr>
+          <tr><td>El letrero retroiluminado de noche, en horizontal amplio</td><td class="tgt">Hero del home</td><td>Media</td></tr>
+          <tr><td>Detalle cerrado del panel acústico perforado</td><td class="tgt">Textura del sistema visual</td><td>Media</td></tr>
+          <tr><td>Recorte de fondo de profesores para composición con texto</td><td class="tgt">Sistema visual</td><td>Media</td></tr>
+          <tr><td>Sala vacía y ordenada, gran angular</td><td class="tgt">/sala-de-ensayo/</td><td>Media</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Dos condiciones para que la sesión sirva: disparar en la resolución máxima de la cámara y sin filtros, y recoger <b>autorización de uso de imagen por escrito</b> de todos los que aparezcan — indispensable con menores de edad.</p>
+  </section>
+
+  <!-- ============ 9 ============ -->
+  <section>
+    <h2><span class="num">09</span> Lo que necesito de ti</h2>
+    <p>Fase 0 no puede cerrarse sin esto, y Fase 0 es donde empieza todo lo demás.</p>
+
+    <ol class="asks">
+      <li><b>Matriz de profesores</b><span>Quién enseña cada uno de los ocho instrumentos. Determina cuántas páginas se construyen y es el único dato que cambia el tamaño del proyecto.</span></li>
+      <li><b>Precios reales</b><span>Por instrumento y por paquete: clase suelta, mensual, intensivo. Si varían según el instrumento, mejor — más contenido único por página.</span></li>
+      <li><b>Los testimonios</b><span>Confirmar si los tres actuales son reales. Si no, conseguir tres o cuatro verdaderos con nombre y autorización.</span></li>
+      <li><b>Los originales de las fotos</b><span>Los archivos sin comprimir de donde salieron las imágenes del repositorio. Las versiones publicadas están a 600×800 y no aguantan la dirección visual elegida. Es la tarea de menor esfuerzo y mayor impacto de la Fase 0.</span></li>
+      <li><b>El resto del material visual</b><span>Live Sessions, videos de alumnos, lo que exista fuera del repositorio. Necesito verlo para saber qué se recicla y qué se fotografía de nuevo.</span></li>
+      <li><b>Estado de Google Business Profile</b><span>Si ya existe y está verificado, o si hay que crearlo. Es lo más urgente del plan entero.</span></li>
+      <li><b>Rango de edades</b><span>¿Aceptan niños? ¿Desde qué edad? Suzukids domina el segmento infantil; si no compites ahí, el sitio debe decirlo claramente y dirigirse a adolescentes y adultos.</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    Documento de trabajo · Noctámbulo Estudios · Revisión 1
+  </footer>
+
+</div>

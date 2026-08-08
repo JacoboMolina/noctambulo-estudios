@@ -414,5 +414,55 @@ document.addEventListener('DOMContentLoaded', function() {
         loadGallery();
     }
 
+    /* ===================================
+       DROPDOWN NAVIGATION
+       =================================== */
+    const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = dropdown.classList.contains('open');
+
+            dropdowns.forEach(d => {
+                d.classList.remove('open');
+                const t = d.querySelector('.dropdown-toggle');
+                if (t) t.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+                dropdown.classList.add('open');
+                toggle.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        if (menu) {
+            menu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+    });
+
+    document.addEventListener('click', function() {
+        dropdowns.forEach(d => {
+            d.classList.remove('open');
+            const t = d.querySelector('.dropdown-toggle');
+            if (t) t.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            dropdowns.forEach(d => {
+                d.classList.remove('open');
+                const t = d.querySelector('.dropdown-toggle');
+                if (t) t.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+
     console.log('🐱 Noctámbulo Estudios - Website loaded successfully');
 });

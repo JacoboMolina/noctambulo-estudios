@@ -13,3 +13,7 @@ Thumbs.db
 *.swo
 .vscode/
 .idea/
+
+# Trabajo de clientes y documentos internos — NO publicar (repo público)
+docs/
+scripts/

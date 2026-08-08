@@ -115,8 +115,16 @@
                 <li class="nav-item">
                     <a href="#inicio" class="nav-link">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#servicios" class="nav-link">Servicios</a>
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Servicios
+                        <svg xmlns="http://www.w3.org/2000/svg" class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="clases.html" class="dropdown-item">Clases de Música</a></li>
+                        <li><a href="sala-de-ensayo.html" class="dropdown-item">Sala de Ensayo</a></li>
+                        <li><a href="grabacion.html" class="dropdown-item">Grabación y Producción</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="galeria.html" class="nav-link">Galería</a>
@@ -199,7 +207,10 @@
                         <li>Guitarra Eléctrica</li>
                         <li>Producción Musical</li>
                     </ul>
-                    <a href="https://wa.me/5215657933677?text=Hola,%20me%20interesan%20las%20clases%20de%20música" target="_blank" class="btn btn-outline">Consultar por clases de música</a>
+                    <div class="service-card-buttons">
+                        <a href="clases.html" class="btn btn-secondary">Conoce más</a>
+                        <a href="https://wa.me/5215657933677?text=Hola,%20me%20interesan%20las%20clases%20de%20música" target="_blank" class="btn btn-outline">Consultar por WhatsApp</a>
+                    </div>
                 </div>
 
                 <!-- Sala de Ensayo -->
@@ -221,7 +232,10 @@
                         <li>Consola Digital</li>
                         <li>Sistema PA profesional</li>
                     </ul>
-                    <a href="agendar.html#ensayo" class="btn btn-primary">Reservar ahora</a>
+                    <div class="service-card-buttons">
+                        <a href="agendar.html#ensayo" class="btn btn-primary">Reservar ahora</a>
+                        <a href="sala-de-ensayo.html" class="btn btn-outline">Conoce más</a>
+                    </div>
                 </div>
 
                 <!-- Estudio de Grabación -->
@@ -243,7 +257,10 @@
                         <li>Podcast y contenido para redes</li>
                         
                     </ul>
-                    <a href="https://wa.me/5215657933677?text=Hola,%20me%20interesa%20el%20servicio%20de%20grabación" target="_blank" class="btn btn-outline">Solicitar cotización</a>
+                    <div class="service-card-buttons">
+                        <a href="grabacion.html" class="btn btn-secondary">Conoce más</a>
+                        <a href="https://wa.me/5215657933677?text=Hola,%20me%20interesa%20el%20servicio%20de%20grabación" target="_blank" class="btn btn-outline">Solicitar cotización</a>
+                    </div>
                 </div>
             </div>
 
@@ -524,9 +541,9 @@
                 <div class="footer-services">
                     <h4>Servicios</h4>
                     <ul>
-                        <li><a href="#servicios">Clases de música</a></li>
-                        <li><a href="#servicios">Sala de ensayo</a></li>
-                        <li><a href="#servicios">Estudio de grabación</a></li>
+                        <li><a href="clases.html">Clases de Música</a></li>
+                        <li><a href="sala-de-ensayo.html">Sala de Ensayo</a></li>
+                        <li><a href="grabacion.html">Grabación y Producción</a></li>
                     </ul>
                 </div>
 
