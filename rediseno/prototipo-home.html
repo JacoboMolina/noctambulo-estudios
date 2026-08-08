@@ -225,6 +225,58 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
 /* La palabra que cambia por sección. Solo ella lleva color, para que se
    lea como una misma frase mutando y no como frases distintas. */
 .var { color: var(--cork); }
+
+/* --- La frase se arma al cargar ---
+   Cada palabra vive dentro de una máscara y sube a su lugar con desfase.
+   El texto está completo en el HTML desde el primer byte: Google lo lee
+   igual, la animación solo afecta cómo se pinta. Total 0.55 s + 7 × 65 ms
+   ≈ 1 s, con la primera palabra visible casi de inmediato. */
+.hero-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 .26em;
+}
+
+.hero-title .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: .08em;   /* deja respirar descendentes como la g de lugar */
+  margin-bottom: -.08em;
+}
+
+.hero-title .w > i {
+  display: inline-block;
+  font-style: normal;
+  transform: translateY(105%);
+  animation: word-rise .55s cubic-bezier(.22, 1, .36, 1) forwards;
+  animation-delay: calc(var(--i) * 65ms);
+}
+
+@keyframes word-rise { to { transform: translateY(0); } }
+
+/* La palabra de color además enciende su tono al aterrizar */
+.hero-title .var {
+  animation: word-rise .55s cubic-bezier(.22, 1, .36, 1) forwards,
+             word-glow .5s ease forwards;
+  animation-delay: calc(var(--i) * 65ms), calc(var(--i) * 65ms + .25s);
+}
+
+@keyframes word-glow {
+  from { color: var(--on-night); }
+  to   { color: var(--cork); }
+}
+
+/* Quien pidió menos movimiento ve la frase ya puesta, sin excepción */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .w > i,
+  .hero-title .var {
+    transform: none;
+    animation: none;
+    color: inherit;
+  }
+  .hero-title .var { color: var(--cork); }
+}
 .hero-sub { max-width: 46ch; font-size: 1.12rem; color: var(--on-night-2); }
 .hero-sub b { color: var(--bone); font-weight: 600; }
 
@@ -522,7 +574,16 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
   </div>
   <div class="page hero-in">
     <p class="label">Escuela de música en Tlaxcala</p>
-    <h1 class="display">Tu <span class="var" id="hero-var">música</span> merece un lugar a la altura</h1>
+    <h1 class="display hero-title" id="hero-title">
+      <span class="w"><i style="--i:0" id="hero-art">Tu</i></span>
+      <span class="w"><i style="--i:1" class="var" id="hero-var">música</i></span>
+      <span class="w"><i style="--i:2" id="hero-verb">merece</i></span>
+      <span class="w"><i style="--i:3">un</i></span>
+      <span class="w"><i style="--i:4">lugar</i></span>
+      <span class="w"><i style="--i:5">a</i></span>
+      <span class="w"><i style="--i:6">la</i></span>
+      <span class="w"><i style="--i:7">altura</i></span>
+    </h1>
     <p class="hero-sub">Clases de <b>guitarra, bajo, batería, piano, canto, violín y producción</b>, en el mismo cuarto donde se ensaya y se graba.</p>
     <div class="btn-row">
       <a href="#contacto" class="btn btn-solid">Agenda tu clase muestra</a>
@@ -633,14 +694,14 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
   <div class="page">
     <div class="sec-head">
       <p class="label">Tarifas</p>
-      <h2 class="display">Desde $850 al mes</h2>
+      <h2 class="display">Desde $900 al mes</h2>
       <p class="lead">Mensualidad, no clase suelta. Sin inscripción, sin anualidad y sin contrato de permanencia — si un mes no puedes, no pagas.</p>
     </div>
 
     <div class="price-hero">
       <div class="price-hero-fig">
         <span class="price-hero-from">desde</span>
-        <span class="price-hero-num">$850</span>
+        <span class="price-hero-num">$900</span>
         <span class="price-hero-cur">MXN / mes</span>
       </div>
       <p>Es el plan de una clase por semana. Los de dos y tres clases bajan el costo por sesión — te pasamos la lista completa por WhatsApp o en tu clase muestra.</p>
@@ -848,27 +909,37 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
          .../ensayo/    Estudios    Tus ENSAYOS merecen un lugar a la altura   */
   (function () {
     var secciones = [
-      { marca: 'Estudios', palabra: 'música',      btn: 'Ver la sección /clases/' },
-      { marca: 'Students', palabra: 'aprendizaje', btn: 'Ver la sección /estudio/' },
-      { marca: 'Estudios', palabra: 'grabaciones', btn: 'Volver al home' }
+      { marca: 'Estudios', palabra: 'música',      plural: false, btn: 'Ver la sección /clases/' },
+      { marca: 'Students', palabra: 'aprendizaje', plural: false, btn: 'Ver la sección /estudio/' },
+      { marca: 'Estudios', palabra: 'grabaciones', plural: true,  btn: 'Volver al home' }
     ];
-    var i    = 0;
-    var word = document.getElementById('brand-word');
-    var hero = document.getElementById('hero-var');
-    var btn  = document.getElementById('brand-toggle');
-    if (!word || !hero || !btn) return;
+    var i     = 0;
+    var marca = document.getElementById('brand-word');
+    var art   = document.getElementById('hero-art');
+    var vari  = document.getElementById('hero-var');
+    var verbo = document.getElementById('hero-verb');
+    var title = document.getElementById('hero-title');
+    var btn   = document.getElementById('brand-toggle');
+    if (!marca || !art || !vari || !verbo || !title || !btn) return;
 
     btn.addEventListener('click', function () {
       i = (i + 1) % secciones.length;
       var s = secciones[i];
-      word.textContent = s.marca;
-      hero.textContent = s.palabra;
-      /* "grabaciones" es plural y arrastra el verbo */
-      hero.nextSibling.textContent = s.palabra === 'grabaciones'
-        ? ' merecen un lugar a la altura'
-        : ' merece un lugar a la altura';
-      hero.previousSibling.textContent = s.palabra === 'grabaciones' ? 'Tus ' : 'Tu ';
-      btn.textContent = s.btn;
+
+      marca.textContent = s.marca;
+      vari.textContent  = s.palabra;
+      /* "grabaciones" es plural y arrastra artículo y verbo */
+      art.textContent   = s.plural ? 'Tus' : 'Tu';
+      verbo.textContent = s.plural ? 'merecen' : 'merece';
+      btn.textContent   = s.btn;
+
+      /* Rearmar la frase. Reiniciar la animación exige forzar un reflow:
+         sin la lectura de offsetWidth el navegador agrupa los cambios y
+         no vuelve a disparar los keyframes. */
+      var palabras = title.querySelectorAll('.w > i');
+      palabras.forEach(function (p) { p.style.animation = 'none'; });
+      void title.offsetWidth;
+      palabras.forEach(function (p) { p.style.animation = ''; });
     });
   })();
 </script>
