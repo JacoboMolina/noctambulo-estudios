@@ -479,9 +479,14 @@
 
     <p>GitHub Pages no emite redirecciones 301 nativas. Las URLs viejas se conservan como archivos de redirección con <code>meta refresh</code> más <code>rel="canonical"</code> apuntando a la nueva — no es tan limpio como un 301 real, pero preserva el poco enlazado externo que existe y Google lo procesa correctamente.</p>
 
-    <h3>Ocho páginas de instrumento, o menos</h3>
-    <p>Una página por instrumento solo funciona si cada una tiene contenido propio: profesor con nombre y trayectoria, plan de estudio, repertorio, precio, equipo disponible. Ocho variaciones del mismo texto con la palabra cambiada es contenido duplicado, y Google indexa una y descarta el resto — el esfuerzo se pierde entero.</p>
-    <p>El sitio actual muestra dos profesores. El criterio para decidir el alcance real es simple: <b>cada instrumento con profesor asignado recibe página propia; los demás se agrupan en el hub hasta tenerlo.</b> Es preferible arrancar con cuatro páginas sólidas y crecer, que publicar ocho a medias.</p>
+    <h3>Cuatro páginas ahora, ocho instrumentos ofrecidos</h3>
+    <p>Una página por instrumento solo funciona si cada una tiene contenido propio: plan de estudio, repertorio, equipo disponible, qué logras en tres, seis y doce meses, preguntas frecuentes de ese instrumento. Ocho variaciones del mismo texto con la palabra cambiada es contenido duplicado, y Google indexa una y descarta el resto — el esfuerzo se pierde entero.</p>
+    <p>El criterio no es «¿lo ofrecemos?» sino «¿tenemos material suficiente para escribir una página que se sostenga sola?». Con el equipo de tiempo completo — Jacobo, Esteban y Mox — eso da <b>cuatro páginas sólidas de arranque: guitarra eléctrica, guitarra acústica, batería y canto.</b></p>
+    <p>Los otros cuatro — bajo, piano, violín y producción musical — <b>se siguen ofreciendo y aparecen en la navegación</b>, apoyados en profesores invitados. Simplemente viven dentro del hub <code>/clases/</code> hasta que haya contenido para darles página propia. Que un instrumento no tenga URL no significa que no se enseñe.</p>
+
+    <h3>Por qué las páginas no llevan nombre de profesor</h3>
+    <p>Fue una decisión deliberada, y tiene respaldo en el material de Armonía que ya habías recopilado: <em>«con clases individuales necesitas demasiados profesores, y muchos son buenos músicos pero no buenos docentes; con este modelo necesitas pocos y puedes quedarte con los mejores»</em>.</p>
+    <p>Atar cada instrumento a una persona nombrada codificaría en el sitio justo la estructura de la que el negocio quiere salir: ocho dependencias que mantener, y ocho páginas que romper cada vez que alguien se va. En su lugar hay una sección de <b>faculty</b> con los tres de tiempo completo, y las páginas de instrumento se sostienen sobre el método y el plan de estudio, que son de la escuela.</p>
   </section>
 
   <!-- ============ 4 ============ -->
@@ -531,8 +536,9 @@
         <p class="phase-goal">El corazón del negocio, construido con el sistema ya aprobado.</p>
         <ul>
           <li>Home reposicionado: <code>h1</code> de escuela, clases como sección principal, ensayo y grabación en segundo nivel</li>
-          <li>Hub <code>/clases/</code> — la página que compite por «escuela de música en Tlaxcala»</li>
-          <li>Páginas por instrumento, según la matriz de Fase 0</li>
+          <li>Hub <code>/clases/</code> — la página que compite por «escuela de música en Tlaxcala», y donde viven los cuatro instrumentos sin página propia</li>
+          <li>Cuatro páginas de instrumento: guitarra eléctrica, guitarra acústica, batería y canto</li>
+          <li>Sección de faculty con Jacobo, Esteban y Mox, más schema <code>Person</code> por cada uno</li>
           <li>Precios completos y visibles en cada página</li>
           <li>Datos estructurados <code>Course</code> y <code>CourseInstance</code> por instrumento</li>
         </ul>
@@ -745,9 +751,8 @@
     <p>Fase 0 no puede cerrarse sin esto, y Fase 0 es donde empieza todo lo demás.</p>
 
     <ol class="asks">
-      <li><b>Matriz de profesores</b><span>Quién enseña cada uno de los ocho instrumentos. Determina cuántas páginas se construyen y es el único dato que cambia el tamaño del proyecto.</span></li>
+      <li><b>Testimonios reales</b><span>Confirmar si los tres actuales de <code>clases.html</code> son de alumnos reales. Si no, conseguir tres o cuatro verdaderos con nombre y autorización. Es lo último que bloquea publicar.</span></li>
       <li><b>Precios reales</b><span>Por instrumento y por paquete: clase suelta, mensual, intensivo. Si varían según el instrumento, mejor — más contenido único por página.</span></li>
-      <li><b>Los testimonios</b><span>Confirmar si los tres actuales son reales. Si no, conseguir tres o cuatro verdaderos con nombre y autorización.</span></li>
       <li><b>Los originales de las fotos</b><span>Los archivos sin comprimir de donde salieron las imágenes del repositorio. Las versiones publicadas están a 600×800 y no aguantan la dirección visual elegida. Es la tarea de menor esfuerzo y mayor impacto de la Fase 0.</span></li>
       <li><b>El resto del material visual</b><span>Live Sessions, videos de alumnos, lo que exista fuera del repositorio. Necesito verlo para saber qué se recicla y qué se fotografía de nuevo.</span></li>
       <li><b>Estado de Google Business Profile</b><span>Si ya existe y está verificado, o si hay que crearlo. Es lo más urgente del plan entero.</span></li>
