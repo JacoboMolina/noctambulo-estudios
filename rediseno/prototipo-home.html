@@ -220,7 +220,9 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
   background: linear-gradient(180deg, rgba(20,17,14,.55) 0%, rgba(20,17,14,.75) 45%, var(--night) 100%);
 }
 
-.hero-in { position: relative; display: flex; flex-direction: column; gap: 1.6rem; max-width: 22ch; }
+/* OJO: la unidad ch se resuelve contra el font-size de ESTE elemento (17px),
+   no contra el del h1. Un 22ch aquí encajonaba el titular en ~220px. */
+.hero-in { position: relative; display: flex; flex-direction: column; gap: 1.6rem; max-width: min(100%, 64rem); }
 
 /* La palabra que cambia por sección. Solo ella lleva color, para que se
    lea como una misma frase mutando y no como frases distintas. */
@@ -235,6 +237,7 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
   display: flex;
   flex-wrap: wrap;
   gap: 0 .26em;
+  max-width: 17ch;   /* aquí sí se resuelve contra el tamaño del titular */
 }
 
 .hero-title .w {
@@ -279,7 +282,6 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
 }
 .hero-sub { max-width: 46ch; font-size: 1.12rem; color: var(--on-night-2); }
 .hero-sub b { color: var(--bone); font-weight: 600; }
-.hero-note { font-size: .87rem; color: var(--on-night-2); max-width: 44ch; margin: -.4rem 0 0; }
 
 /* ============ instrumentos ============ */
 
@@ -579,7 +581,7 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
     <img src="../assets/img/gallery/espacio/horizontal.jpg" alt="Interior de Noctámbulo Estudios">
   </div>
   <div class="page hero-in">
-    <p class="label">Escuela de música en Tlaxcala</p>
+    <p class="label">Escuela de música y sala de ensayo en Tlaxcala</p>
     <h1 class="display hero-title" id="hero-title">
       <span class="w"><i style="--i:0" id="hero-art">Tu</i></span>
       <span class="w"><i style="--i:1" class="var" id="hero-var">música</i></span>
@@ -590,12 +592,11 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
       <span class="w"><i style="--i:6">la</i></span>
       <span class="w"><i style="--i:7">altura</i></span>
     </h1>
-    <p class="hero-sub">Clases de <b>guitarra, bajo, batería, piano, canto, violín y producción</b>, en el mismo cuarto donde se ensaya y se graba.</p>
+    <p class="hero-sub">Clases de <b>guitarra, batería, canto, piano, violín, bajo y producción musical</b>, con profesores altamente capacitados.</p>
     <div class="btn-row">
       <a href="#contacto" class="btn btn-solid">Agenda tu clase muestra gratis</a>
       <a href="#instrumentos" class="btn btn-ghost-night">Ver instrumentos</a>
     </div>
-    <p class="hero-note">Sin costo y sin compromiso. Puedes probar todos los instrumentos y quedarte con el que te lata.</p>
   </div>
 </header>
 
@@ -604,8 +605,8 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
   <div class="page">
     <div class="sec-head">
       <p class="label">Qué puedes aprender</p>
-      <h2 class="display">Ocho caminos, una sola sala</h2>
-      <p class="lead">En la clase muestra puedes probarlos todos, sin costo, y quedarte con el que te lata.</p>
+      <h2 class="display">Tenemos clases 100% individuales para 8 instrumentos</h2>
+      <p class="lead">Conócelos a continuación. Puedes agendar una clase muestra en cualquiera de ellos: no tiene costo ni compromiso.</p>
     </div>
 
     <div class="inst-grid">
